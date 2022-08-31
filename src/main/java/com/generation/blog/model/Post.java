@@ -19,21 +19,21 @@ public class Post {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@NotBlank(message = "The field should contain a title")
-	@Size(min = 5, max = 100, message = "The field countain between 10 and 1000 characters.")
+	@Size(min = 5, max = 100, message = "The field should countain between 10 and 1000 characters.")
 	private String title;
 
 	@NotBlank(message = "The field should contain a text")
-	@Size(min = 10, max = 1000, message = "The field countain between 10 and 1000 characters.")
+	@Size(min = 10, max = 1000, message = "The field shouldcountain between 10 and 1000 characters.")
 	public String text;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
