@@ -8,11 +8,11 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.generation.blog</groupId>
-	<artifactId>SocialMedia</artifactId>
+	<groupId>com.generation</groupId>
+	<artifactId>blogpessoal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SocialMedia</name>
-	<description>My Social Media</description>
+	<name>blogpessoal</name>
+	<description>Projeto Blog Pessoal</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
