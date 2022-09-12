@@ -22,9 +22,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.generation.blogpessoal.repository.PostagemRepository;
 import com.generation.blogpessoal.repository.TemaRepository;
-import com.generation.blogpessoal.model.Postagem;
+import com.generation.blogpessoal.model.PostagemModel;
 
-@RestController 
+@RestController
 @RequestMapping("/postagens")
 @CrossOrigin(origins = "*", allowedHeaders = "*") 
 public class PostagemController {
@@ -36,24 +36,24 @@ public class PostagemController {
 		private TemaRepository temaRepository;
 		
 		@GetMapping 
-		public ResponseEntity<List<Postagem>> getAll(){ 
+		public ResponseEntity<List<PostagemModel>> getAll(){ 
 			return ResponseEntity.ok(postagemRepository.findAll()); 
 		}
 		
 		@GetMapping("/{id}")
-		public ResponseEntity<Postagem> getById(@PathVariable Long id) { 
+		public ResponseEntity<PostagemModel> getById(@PathVariable Long id) { 
 			return postagemRepository.findById(id) 
 					.map(resposta -> ResponseEntity.ok(resposta)) 
 					.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 		}
 		
 		@GetMapping("/titulo/{titulo}")
-		public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable String titulo) { 
+		public ResponseEntity<List<PostagemModel>> getByTitulo(@PathVariable String titulo) { 
 			return ResponseEntity.ok(postagemRepository.findAllByTituloContainingIgnoreCase(titulo));
 		}
 		
 		@PostMapping 
-		public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem) { 
+		public ResponseEntity<PostagemModel> post(@Valid @RequestBody PostagemModel postagem) { 
 		if(temaRepository.existsById(postagem.getTema().getId()))
 			return ResponseEntity.status(HttpStatus.CREATED) 
 					.body(postagemRepository.save(postagem));
@@ -62,7 +62,7 @@ public class PostagemController {
 		}
 		
 		@PutMapping 
-		public ResponseEntity<Postagem> put(@Valid @RequestBody Postagem postagem) { 
+		public ResponseEntity<PostagemModel> put(@Valid @RequestBody PostagemModel postagem) { 
 
 		if (postagemRepository.existsById(postagem.getId())){
 			if(temaRepository.existsById(postagem.getTema().getId()))
@@ -79,7 +79,7 @@ public class PostagemController {
 		@ResponseStatus(HttpStatus.NO_CONTENT) 
 		@DeleteMapping("/{id}") 
 		public void delete(@PathVariable Long id) { 
-			Optional<Postagem> postagem = postagemRepository.findById(id); 
+			Optional<PostagemModel> postagem = postagemRepository.findById(id); 
 			if (postagem.isEmpty())
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND); 
 			
